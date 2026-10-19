@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Санскрит в асанах</title>
+<meta name="theme-color" content="#246A64">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}body{margin:0}</style>
+</head>
+<body>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prata&family=Golos+Text:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one narrow phone column; sage-tinted ground, ink text, saffron for progress & rewards, teal for actions */
+:root{
+  --bg:#EEF2EF; --surface:#FFFFFF; --surface-2:#E3EAE6; --line:#CFD9D4;
+  --fg:#1B2826; --muted:#5B6B67;
+  --accent:#D9821C; --accent-soft:#F7E3C6; --on-accent:#2A1700;
+  --teal:#246A64; --on-teal:#FFFFFF; --teal-soft:#D3E6E3;
+  --good:#2E7D4F; --good-soft:#D6EEDD; --bad:#B23B3B; --bad-soft:#F5D9D9;
+  --f-display:"Prata", Georgia, "Times New Roman", serif;
+  --f-body:"Golos Text", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111917; --surface:#1A2422; --surface-2:#22302D; --line:#2E3E3A;
+  --fg:#E6EDEA; --muted:#97A8A3;
+  --accent:#F0A543; --accent-soft:#3A2A14; --on-accent:#221300;
+  --teal:#5FB3AA; --on-teal:#0B1A18; --teal-soft:#1D3633;
+  --good:#5CC48A; --good-soft:#163323; --bad:#F07C7C; --bad-soft:#3A1C1C; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111917; --surface:#1A2422; --surface-2:#22302D; --line:#2E3E3A;
+  --fg:#E6EDEA; --muted:#97A8A3;
+  --accent:#F0A543; --accent-soft:#3A2A14; --on-accent:#221300;
+  --teal:#5FB3AA; --on-teal:#0B1A18; --teal-soft:#1D3633;
+  --good:#5CC48A; --good-soft:#163323; --bad:#F07C7C; --bad-soft:#3A1C1C; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.45;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 32px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+#app{max-width:520px;margin:0 auto}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+h1,h2{font-family:var(--f-display);font-weight:400;text-wrap:balance;margin:0}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;align-items:center;gap:8px;padding-block:14px 10px}
+.top h1{font-size:1.35rem;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.iconbtn{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--surface);border:1px solid var(--line);flex:none}
+.iconbtn svg{width:20px;height:20px;stroke:var(--fg);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.stack{display:flex;flex-direction:column;gap:12px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:10px 12px;min-width:0}
+.stat b{display:block;font-size:1.3rem;font-variant-numeric:tabular-nums}
+.stat span{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.goal{height:6px;border-radius:3px;background:var(--surface-2);overflow:hidden;margin-top:6px}
+.goal i{display:block;height:100%;background:var(--accent);border-radius:3px}
+.hero{background:var(--teal);color:var(--on-teal);border-radius:var(--r);padding:16px;display:flex;align-items:center;gap:12px;text-align:left;width:100%}
+.hero div{flex:1;min-width:0}
+.hero b{display:block;font-size:1.1rem}
+.hero span{opacity:.85;font-size:.9rem}
+.hero .go{font-size:1.4rem}
+.label{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-top:8px}
+.folders{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.folder{display:flex;align-items:center;gap:12px;padding:13px 14px;text-align:left;width:100%;border-top:1px solid var(--line)}
+.folder:first-child{border-top:0}
+.folder .nm{flex:1;min-width:0}
+.folder .nm b{display:block;font-weight:600}
+.folder .nm small{color:var(--muted);font-size:.82rem;font-variant-numeric:tabular-nums}
+.ring{width:38px;height:38px;flex:none}
+.ring circle{fill:none;stroke-width:4}
+.ring .bg{stroke:var(--surface-2)} .ring .fg{stroke:var(--accent);stroke-linecap:round;transform:rotate(-90deg);transform-origin:50% 50%}
+.modes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mode{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 8px;display:flex;flex-direction:column;align-items:center;gap:6px;font-weight:600;font-size:.92rem}
+.mode svg{width:26px;height:26px;stroke:var(--teal);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.seg{display:flex;background:var(--surface-2);border-radius:12px;padding:3px;gap:3px}
+.seg button{flex:1;padding:8px 6px;border-radius:9px;font-size:.88rem;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--fg);font-weight:600;box-shadow:0 1px 2px rgb(0 0 0 / .12)}
+.words{background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.word{display:flex;gap:10px;align-items:baseline;padding:10px 14px;border-top:1px solid var(--line)}
+.word:first-child{border-top:0}
+.word .sa{font-family:var(--f-display);font-size:1.05rem;min-width:0;flex:0 1 42%}
+.word .ru{color:var(--muted);flex:1;min-width:0;font-size:.92rem}
+.dot{width:8px;height:8px;border-radius:50%;flex:none;background:var(--surface-2);align-self:center}
+.dot.l1{background:var(--accent-soft);border:1px solid var(--accent)} .dot.l2{background:var(--accent)}
+.progress-line{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.progress-line .bar{flex:1;height:6px;border-radius:3px;background:var(--surface-2);overflow:hidden}
+.progress-line .bar i{display:block;height:100%;background:var(--teal);transition:width .3s}
+/* flashcard */
+.card-wrap{perspective:1200px}
+.fcard{position:relative;width:100%;min-height:340px;transform-style:preserve-3d;transition:transform .45s cubic-bezier(.2,.7,.2,1);cursor:pointer}
+.fcard.flipped{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;overflow:auto}
+.face.back{transform:rotateY(180deg)}
+.face .big{font-family:var(--f-display);font-size:2.3rem;line-height:1.15;overflow-wrap:anywhere}
+.face .mid{font-size:1.35rem;font-weight:600;overflow-wrap:anywhere}
+.face .hint{position:absolute;bottom:14px;font-size:.78rem;color:var(--muted)}
+.face .tag{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
+.ex{font-size:.9rem;color:var(--muted)}
+.ex b{color:var(--fg);font-weight:500}
+.note{font-size:.88rem;color:var(--muted);font-style:italic}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.btn{padding:14px;border-radius:var(--r);font-weight:600;text-align:center;border:1px solid var(--line);background:var(--surface)}
+.btn.primary{background:var(--teal);color:var(--on-teal);border-color:var(--teal)}
+.btn.know{background:var(--good-soft);color:var(--good);border-color:transparent}
+.btn.again{background:var(--bad-soft);color:var(--bad);border-color:transparent}
+.btn.ghost{background:transparent}
+.btn[disabled]{opacity:.5;cursor:default}
+/* quiz */
+.qcard{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px 18px;text-align:center;display:flex;flex-direction:column;gap:6px}
+.qcard .big{font-family:var(--f-display);font-size:2rem;overflow-wrap:anywhere}
+.qcard .mid{font-size:1.25rem;font-weight:600}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{text-align:left;padding:14px 16px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line);font-size:1rem}
+.opt.sa{font-family:var(--f-display);font-size:1.15rem}
+.opt.ok{background:var(--good-soft);border-color:var(--good);color:var(--good);font-weight:600}
+.opt.no{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+.feedback{border-radius:var(--r);padding:12px 14px;font-size:.92rem}
+.feedback.ok{background:var(--good-soft)} .feedback.no{background:var(--bad-soft)}
+/* pairs */
+.pairs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tile{min-height:64px;padding:10px;border-radius:var(--r);background:var(--surface);border:1px solid var(--line);font-size:.92rem;display:flex;align-items:center;justify-content:center;text-align:center;overflow-wrap:anywhere;transition:opacity .25s,transform .15s}
+.tile.sa{font-family:var(--f-display);font-size:1.05rem}
+.tile.sel{border-color:var(--teal);background:var(--teal-soft);border-width:2px}
+.tile.done{opacity:0;pointer-events:none}
+.tile.wrong{background:var(--bad-soft);border-color:var(--bad);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.timer{font-variant-numeric:tabular-nums;font-weight:600}
+/* results */
+.result{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px 20px;text-align:center;display:flex;flex-direction:column;gap:8px;align-items:center}
+.result .score{font-family:var(--f-display);font-size:3rem;line-height:1}
+.xp{display:inline-flex;align-items:center;gap:6px;background:var(--accent-soft);color:var(--fg);border-radius:999px;padding:5px 12px;font-weight:600;font-size:.9rem}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:12px 16px;border-radius:14px;font-size:.92rem;z-index:20;max-width:calc(100% - 32px);box-shadow:0 6px 20px rgb(0 0 0 / .25);animation:pop .25s}
+@keyframes pop{from{transform:translate(-50%,10px);opacity:0}}
+.ach{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.badge{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px;min-width:0}
+.badge b{display:block;font-size:.95rem}
+.badge small{color:var(--muted);font-size:.8rem}
+.badge.off{opacity:.45}
+.badge.on{border-color:var(--accent);background:var(--accent-soft)}
+.lvl{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:8px}
+.lvl .t{display:flex;justify-content:space-between;align-items:baseline}
+.lvl .t b{font-family:var(--f-display);font-size:1.6rem;font-weight:400}
+.confirm{background:var(--bad-soft);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:10px}
+.empty{color:var(--muted);text-align:center;padding:30px 10px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div id="app"></div>
+
+<script>
+const DATA = {"folders": [{"id": "basics", "name": "Основные понятия", "order": 0}, {"id": "numbers", "name": "Числительные", "order": 1}, {"id": "body", "name": "Части тела", "order": 2}, {"id": "shapes", "name": "Часть, целое, фигуры", "order": 3}, {"id": "position", "name": "Положение в пространстве", "order": 4}, {"id": "actions", "name": "Действия с телом", "order": 5}, {"id": "objects", "name": "Предметы", "order": 6}, {"id": "animals", "name": "Животные", "order": 7}, {"id": "birds", "name": "Птицы", "order": 8}, {"id": "plants", "name": "Растения", "order": 9}, {"id": "states", "name": "Человеческие состояния", "order": 10}, {"id": "pranayama", "name": "Пранаяма", "order": 11}], "words": [{"id": "basics-01", "folder": "basics", "word": "Йога", "translation": "объединение, соединение, связь", "examples": [], "note": ""}, {"id": "basics-02", "folder": "basics", "word": "Хатха", "translation": "«ха» — Солнце, «тха» — Луна", "examples": [], "note": "«Ха» символизирует Солнце, мужское начало, Шиву, Пурушу; «тха» — Луну, женское начало, Шакти, Пракрити"}, {"id": "numbers-01", "folder": "numbers", "word": "Эка", "translation": "один", "examples": ["Эка Пада Ширшасана", "Эка Хаста Бхуджасана"], "note": ""}, {"id": "numbers-02", "folder": "numbers", "word": "Дви", "translation": "два", "examples": ["Дви Пада Ширшасана"], "note": ""}, {"id": "numbers-03", "folder": "numbers", "word": "Три", "translation": "три", "examples": ["Уттхита Триконасана"], "note": ""}, {"id": "numbers-04", "folder": "numbers", "word": "Чатур", "translation": "четыре", "examples": ["Чатуранга Дандасана"], "note": ""}, {"id": "numbers-05", "folder": "numbers", "word": "Панча", "translation": "пять", "examples": ["Панча Карма"], "note": ""}, {"id": "numbers-06", "folder": "numbers", "word": "Шат", "translation": "шесть", "examples": ["Шаткарма"], "note": ""}, {"id": "numbers-07", "folder": "numbers", "word": "Сапта", "translation": "семь", "examples": [], "note": ""}, {"id": "numbers-08", "folder": "numbers", "word": "Ашта", "translation": "восемь", "examples": ["Аштавакрасана", "Аштанга Намаскарасана"], "note": ""}, {"id": "numbers-09", "folder": "numbers", "word": "Нава", "translation": "девять", "examples": [], "note": ""}, {"id": "numbers-10", "folder": "numbers", "word": "Даша", "translation": "десять", "examples": ["Экадаши"], "note": ""}, {"id": "body-01", "folder": "body", "word": "Пада", "translation": "стопа", "examples": ["Падахастасана"], "note": ""}, {"id": "body-02", "folder": "body", "word": "Ангуштха", "translation": "большой палец", "examples": ["Падангуштхасана"], "note": ""}, {"id": "body-03", "folder": "body", "word": "Бхуджа", "translation": "рука, плечо", "examples": ["Бхуджа Пидасана"], "note": ""}, {"id": "body-04", "folder": "body", "word": "Хаста", "translation": "рука, кисть", "examples": ["Эка Хаста Маюрасана"], "note": ""}, {"id": "body-05", "folder": "body", "word": "Ширша", "translation": "голова", "examples": ["Ширшасана"], "note": ""}, {"id": "body-06", "folder": "body", "word": "Мукха", "translation": "лицо", "examples": ["Гомукхасана", "Трианг Мукха Эка Пада Пашчимоттанасана"], "note": ""}, {"id": "body-07", "folder": "body", "word": "Ганда", "translation": "щека и вся боковая часть лица", "examples": ["Ганда Бхерундасана"], "note": ""}, {"id": "body-08", "folder": "body", "word": "Карна", "translation": "ухо", "examples": ["Карна Пидасана", "Акарна Дханурасана"], "note": ""}, {"id": "body-09", "folder": "body", "word": "Хану", "translation": "челюсть", "examples": [], "note": ""}, {"id": "body-10", "folder": "body", "word": "Джану", "translation": "колено", "examples": ["Джану Ширшасана"], "note": ""}, {"id": "body-11", "folder": "body", "word": "Паршва", "translation": "бок", "examples": ["Паршва Дханурасана"], "note": ""}, {"id": "body-12", "folder": "body", "word": "Джатхара", "translation": "желудок", "examples": ["Джатхара Паривартанасана"], "note": ""}, {"id": "shapes-01", "folder": "shapes", "word": "Анга", "translation": "часть", "examples": ["Сарвангасана"], "note": ""}, {"id": "shapes-02", "folder": "shapes", "word": "Сарва", "translation": "весь", "examples": ["Сарвангасана"], "note": ""}, {"id": "shapes-03", "folder": "shapes", "word": "Ардха", "translation": "половина", "examples": ["Ардха Матсиендрасана", "Ардха Баддха Падма Пашчимоттанасана"], "note": ""}, {"id": "shapes-04", "folder": "shapes", "word": "Пурна", "translation": "полная", "examples": ["Пурна Матсиендрасана"], "note": ""}, {"id": "shapes-05", "folder": "shapes", "word": "Парипурна", "translation": "целиком, полностью, завершённая", "examples": ["Парипурна Навасана"], "note": ""}, {"id": "shapes-06", "folder": "shapes", "word": "Кона", "translation": "угол", "examples": ["Паривритта Триконасана", "Упавишта Конасана"], "note": ""}, {"id": "shapes-07", "folder": "shapes", "word": "Мандала", "translation": "кольцо, окружность, орбита", "examples": ["Мандаласана"], "note": "Мандаласана: голова и руки — как в Саламба Ширшасане I, а ноги и корпус описывают круг сначала по часовой, затем против часовой стрелки"}, {"id": "shapes-08", "folder": "shapes", "word": "Чакра", "translation": "круг, колесо", "examples": ["Чакрасана"], "note": "Чакрасана — переворот через голову"}, {"id": "shapes-09", "folder": "shapes", "word": "Сама", "translation": "ровный, равный, прямой, похожий", "examples": ["Самаконасана"], "note": ""}, {"id": "position-01", "folder": "position", "word": "А", "translation": "около", "examples": ["Акарна Дханурасана"], "note": ""}, {"id": "position-02", "folder": "position", "word": "Адхо", "translation": "вниз", "examples": ["Адхо Мукха Шванасана"], "note": ""}, {"id": "position-03", "folder": "position", "word": "Урдхва", "translation": "вверх", "examples": ["Урдхва Мукха Шванасана", "Урдхва Прасарита Экападасана"], "note": ""}, {"id": "position-04", "folder": "position", "word": "Випарита", "translation": "обратный, перевёрнутый", "examples": ["Випарита Шалабхасана"], "note": ""}, {"id": "position-05", "folder": "position", "word": "Паривритта", "translation": "повёрнутый, развёрнутый", "examples": ["Паривритта Триконасана"], "note": ""}, {"id": "position-06", "folder": "position", "word": "Паривартана", "translation": "поворачиваться, крутиться, оборачиваться", "examples": ["Джатхара Паривартанасана"], "note": ""}, {"id": "position-07", "folder": "position", "word": "Пашчима", "translation": "запад", "examples": ["Пашчимоттанасана"], "note": ""}, {"id": "position-08", "folder": "position", "word": "Пурва", "translation": "восток", "examples": ["Пурвоттанасана"], "note": ""}, {"id": "position-09", "folder": "position", "word": "Супта", "translation": "лёжа", "examples": ["Супта Вирасана", "Суптаконасана"], "note": ""}, {"id": "position-10", "folder": "position", "word": "Упавишта", "translation": "сидя", "examples": ["Упавишта Конасана"], "note": ""}, {"id": "position-11", "folder": "position", "word": "Уттхита", "translation": "вставший, вытянутый", "examples": ["Уттхита Триконасана"], "note": ""}, {"id": "actions-01", "folder": "actions", "word": "Аламба", "translation": "опора, поддержка", "examples": [], "note": ""}, {"id": "actions-02", "folder": "actions", "word": "Саламба", "translation": "с опорой", "examples": ["Саламба Сарвангасана"], "note": ""}, {"id": "actions-03", "folder": "actions", "word": "Нираламба", "translation": "без опоры", "examples": ["Нираламба Сарвангасана I", "Нираламба Сарвангасана II"], "note": ""}, {"id": "actions-04", "folder": "actions", "word": "Баддха", "translation": "связанный, схваченный, замкнутый", "examples": ["Баддха Конасана"], "note": ""}, {"id": "actions-05", "folder": "actions", "word": "Вакра", "translation": "кривой, скрученный", "examples": ["Аштавакрасана"], "note": ""}, {"id": "actions-06", "folder": "actions", "word": "Лола", "translation": "дрожащий, раскачивающийся", "examples": ["Лоласана"], "note": "Колеблющийся, раскачивающийся взад и вперёд подобно серьге"}, {"id": "actions-07", "folder": "actions", "word": "Пида", "translation": "давление", "examples": ["Бхуджа Пидасана", "Карнапидасана"], "note": ""}, {"id": "actions-08", "folder": "actions", "word": "Прасарита", "translation": "расширенный, расправленный, растянутый", "examples": ["Прасарита Падоттанасана"], "note": ""}, {"id": "actions-09", "folder": "actions", "word": "Санчала", "translation": "движущийся", "examples": ["Ашва Санчаласана"], "note": ""}, {"id": "actions-10", "folder": "actions", "word": "Стхира", "translation": "устойчивый", "examples": [], "note": ""}, {"id": "actions-11", "folder": "actions", "word": "Стхити", "translation": "стояние ровно, неподвижность", "examples": ["Самастхити"], "note": ""}, {"id": "actions-12", "folder": "actions", "word": "Сукха", "translation": "простой, удобный, лёгкий, приятный", "examples": ["Сукхасана"], "note": ""}, {"id": "actions-13", "folder": "actions", "word": "Утката", "translation": "сильный, яростный", "examples": ["Уткатасана"], "note": ""}, {"id": "actions-14", "folder": "actions", "word": "Уттана", "translation": "интенсивное вытяжение", "examples": ["Уттанасана", "Пашчимоттанасана"], "note": ""}, {"id": "objects-01", "folder": "objects", "word": "Агни", "translation": "огонь", "examples": ["Агни Стамбхасана"], "note": ""}, {"id": "objects-02", "folder": "objects", "word": "Ваджра", "translation": "молния, алмаз", "examples": ["Ваджрасана"], "note": "Молния, оружие Индры — царя богов, алмаз"}, {"id": "objects-03", "folder": "objects", "word": "Данда", "translation": "посох, палка", "examples": ["Йогадандасана", "Чатуранга Дандасана"], "note": ""}, {"id": "objects-04", "folder": "objects", "word": "Дханур", "translation": "боевой лук", "examples": ["Дханурасана", "Урдхва Дханурасана"], "note": ""}, {"id": "objects-05", "folder": "objects", "word": "Мала", "translation": "гирлянда, чётки", "examples": ["Маласана"], "note": ""}, {"id": "objects-06", "folder": "objects", "word": "Нава", "translation": "лодка", "examples": ["Парипурна Навасана", "Ардха Навасана"], "note": "Омоним: «нава» — также «девять»"}, {"id": "objects-07", "folder": "objects", "word": "Намасте", "translation": "приветствие", "examples": [], "note": "Намах — поклон, те — тебе"}, {"id": "objects-08", "folder": "objects", "word": "Парвата", "translation": "гора, скала", "examples": ["Парватасана"], "note": ""}, {"id": "objects-09", "folder": "objects", "word": "Парианка", "translation": "кровать, кушетка, софа", "examples": ["Парианкасана"], "note": ""}, {"id": "objects-10", "folder": "objects", "word": "Паригха", "translation": "перекладина, засов", "examples": ["Паригхасана"], "note": ""}, {"id": "objects-11", "folder": "objects", "word": "Паша", "translation": "петля, верёвка", "examples": ["Пашасана"], "note": ""}, {"id": "objects-12", "folder": "objects", "word": "Сету", "translation": "мост", "examples": ["Сету Бандхасана"], "note": ""}, {"id": "objects-13", "folder": "objects", "word": "Стамбха", "translation": "столб", "examples": ["Агни Стамбхасана"], "note": ""}, {"id": "objects-14", "folder": "objects", "word": "Сурья", "translation": "солнце", "examples": ["Сурья Намаскар"], "note": ""}, {"id": "objects-15", "folder": "objects", "word": "Тада", "translation": "гора", "examples": ["Тадасана"], "note": ""}, {"id": "objects-16", "folder": "objects", "word": "Тола", "translation": "весы", "examples": ["Толасана"], "note": ""}, {"id": "objects-17", "folder": "objects", "word": "Хала", "translation": "плуг", "examples": ["Халасана"], "note": ""}, {"id": "objects-18", "folder": "objects", "word": "Чандра", "translation": "луна", "examples": ["Ардха Чандрасана", "Паривритта Ардха Чандрасана"], "note": ""}, {"id": "animals-01", "folder": "animals", "word": "Ашва", "translation": "конь", "examples": ["Ашва Санчаласана"], "note": ""}, {"id": "animals-02", "folder": "animals", "word": "Ватаяна", "translation": "лошадь", "examples": ["Ватаянасана"], "note": ""}, {"id": "animals-03", "folder": "animals", "word": "Марджари", "translation": "кот", "examples": ["Марджариасана"], "note": ""}, {"id": "animals-04", "folder": "animals", "word": "Бидала", "translation": "кошка", "examples": ["Бидаласана"], "note": ""}, {"id": "animals-05", "folder": "animals", "word": "Бхека, мандука", "translation": "лягушка", "examples": ["Бхекасана", "Ардха Бхекасана"], "note": ""}, {"id": "animals-06", "folder": "animals", "word": "Бхуджанга", "translation": "кобра, змея", "examples": ["Бхуджангасана"], "note": ""}, {"id": "animals-07", "folder": "animals", "word": "Вришчика", "translation": "скорпион", "examples": ["Вришчикасана I", "Вришчикасана II"], "note": ""}, {"id": "animals-08", "folder": "animals", "word": "Го", "translation": "корова", "examples": ["Гомукхасана"], "note": ""}, {"id": "animals-09", "folder": "animals", "word": "Курма", "translation": "черепаха", "examples": ["Курмасана", "Супта Курмасана"], "note": ""}, {"id": "animals-10", "folder": "animals", "word": "Макара, накра", "translation": "крокодил", "examples": ["Макарасана", "Накрасана"], "note": "Накрасана — прыжки в Чатуранге"}, {"id": "animals-11", "folder": "animals", "word": "Матсиа", "translation": "рыба", "examples": ["Матсиасана"], "note": ""}, {"id": "animals-12", "folder": "animals", "word": "Симха", "translation": "лев", "examples": ["Симхасана I", "Симхасана II"], "note": ""}, {"id": "animals-13", "folder": "animals", "word": "Титибха", "translation": "светлячок", "examples": ["Титибхасана"], "note": ""}, {"id": "animals-14", "folder": "animals", "word": "Уштра", "translation": "верблюд", "examples": ["Уштрасана"], "note": ""}, {"id": "animals-15", "folder": "animals", "word": "Шалабха", "translation": "саранча", "examples": ["Шалабхасана"], "note": ""}, {"id": "animals-16", "folder": "animals", "word": "Шашанка", "translation": "заяц", "examples": ["Шашанкасана"], "note": ""}, {"id": "animals-17", "folder": "animals", "word": "Швана", "translation": "собака", "examples": ["Адхо Мукха Шванасана", "Урдхва Мукха Шванасана"], "note": ""}, {"id": "birds-01", "folder": "birds", "word": "Бака", "translation": "журавль", "examples": ["Бакасана"], "note": ""}, {"id": "birds-02", "folder": "birds", "word": "Гаруда", "translation": "орёл", "examples": ["Гарудасана"], "note": ""}, {"id": "birds-03", "folder": "birds", "word": "Кака", "translation": "ворон", "examples": ["Какасана"], "note": ""}, {"id": "birds-04", "folder": "birds", "word": "Капинджала", "translation": "куропатка", "examples": ["Капинджаласана"], "note": "Разновидность куропатки, которая, по легенде, питается только каплями дождя и росы"}, {"id": "birds-05", "folder": "birds", "word": "Капота", "translation": "голубь", "examples": ["Капотасана", "Эка Пада Раджа Капотасана"], "note": ""}, {"id": "birds-06", "folder": "birds", "word": "Краунча", "translation": "цапля", "examples": ["Краунчасана"], "note": ""}, {"id": "birds-07", "folder": "birds", "word": "Куккута", "translation": "петух", "examples": ["Куккутасана", "Урдхва Куккутасана"], "note": ""}, {"id": "birds-08", "folder": "birds", "word": "Маюра", "translation": "павлин", "examples": ["Маюрасана"], "note": ""}, {"id": "birds-09", "folder": "birds", "word": "Пинча", "translation": "хвост, перо", "examples": ["Пинча Маюрасана"], "note": ""}, {"id": "birds-10", "folder": "birds", "word": "Хамса", "translation": "лебедь", "examples": ["Хамсасана", "Ардха Хамсасана"], "note": ""}, {"id": "birds-11", "folder": "birds", "word": "Чакора", "translation": "птица, питающаяся лунными лучами", "examples": ["Чакорасана"], "note": "Птица, похожая на куропатку, которая, по легенде, питается лунными лучами"}, {"id": "plants-01", "folder": "plants", "word": "Врикша", "translation": "дерево", "examples": ["Врикшасана", "Адхо Мукха Врикшасана"], "note": ""}, {"id": "plants-02", "folder": "plants", "word": "Канда", "translation": "корнеплод, узел", "examples": ["Кандасана"], "note": ""}, {"id": "plants-03", "folder": "plants", "word": "Падма", "translation": "лотос", "examples": ["Падмасана", "Урдхва Падмасана"], "note": ""}, {"id": "states-01", "folder": "states", "word": "Ананда", "translation": "счастливый", "examples": ["Ананда Баласана"], "note": ""}, {"id": "states-02", "folder": "states", "word": "Буддха", "translation": "просветлённый, просвещённый", "examples": ["Буддхасана"], "note": ""}, {"id": "states-03", "folder": "states", "word": "Бхадра", "translation": "прекрасный, удачливый, отличный", "examples": [], "note": ""}, {"id": "states-04", "folder": "states", "word": "Бхайрава", "translation": "гневный, грозный", "examples": ["Бхайравасана"], "note": ""}, {"id": "states-05", "folder": "states", "word": "Бхерунда", "translation": "страшный, ужасный", "examples": ["Ганда Бхерундасана"], "note": ""}, {"id": "states-06", "folder": "states", "word": "Вира", "translation": "герой", "examples": ["Вирасана", "Супта Вирасана"], "note": ""}, {"id": "states-07", "folder": "states", "word": "Гарбха", "translation": "чрево", "examples": ["Гарбха Пиндасана"], "note": ""}, {"id": "states-08", "folder": "states", "word": "Маха", "translation": "великий", "examples": [], "note": ""}, {"id": "states-09", "folder": "states", "word": "Нара", "translation": "человек", "examples": [], "note": ""}, {"id": "states-10", "folder": "states", "word": "Ната", "translation": "танцор", "examples": ["Натараджасана"], "note": ""}, {"id": "states-11", "folder": "states", "word": "Нидра", "translation": "сон", "examples": ["Йога Нидрасана"], "note": ""}, {"id": "states-12", "folder": "states", "word": "Пинда", "translation": "зародыш, эмбрион", "examples": ["Гарбха Пиндасана"], "note": ""}, {"id": "states-13", "folder": "states", "word": "Раджа", "translation": "владыка, король", "examples": ["Натараджасана", "Раджа Капотасана", "Эка Пада Раджакапотасана"], "note": ""}, {"id": "states-14", "folder": "states", "word": "Сиддха", "translation": "совершенный, выполненный", "examples": ["Сиддхасана"], "note": ""}, {"id": "states-15", "folder": "states", "word": "Шава, мрита", "translation": "труп, мертвец", "examples": ["Шавасана"], "note": ""}, {"id": "pranayama-01", "folder": "pranayama", "word": "Прана", "translation": "дыхание, жизнь, жизненная сила", "examples": [], "note": ""}, {"id": "pranayama-02", "folder": "pranayama", "word": "Аяма", "translation": "длительность, вытяжение, сдерживание", "examples": [], "note": "Длительность, распространение, вытяжение или сдерживание"}, {"id": "pranayama-03", "folder": "pranayama", "word": "Шваса", "translation": "дыхание", "examples": [], "note": ""}, {"id": "pranayama-04", "folder": "pranayama", "word": "Пурака", "translation": "вдох (наполнение)", "examples": [], "note": ""}, {"id": "pranayama-05", "folder": "pranayama", "word": "Речака", "translation": "выдох (опустошение)", "examples": [], "note": ""}, {"id": "pranayama-06", "folder": "pranayama", "word": "Кумбхака", "translation": "задержка (горшок)", "examples": [], "note": ""}, {"id": "pranayama-07", "folder": "pranayama", "word": "Антар", "translation": "внутренний", "examples": [], "note": "Задержка после вдоха"}, {"id": "pranayama-08", "folder": "pranayama", "word": "Бахир", "translation": "внешний", "examples": [], "note": "Задержка после выдоха"}, {"id": "pranayama-09", "folder": "pranayama", "word": "Анулома", "translation": "по направлению, в естественном порядке", "examples": [], "note": "Ану — вместе, в связи, наряду; лома — волос, шерсть"}, {"id": "pranayama-10", "folder": "pranayama", "word": "Вилома", "translation": "против естественного порядка", "examples": [], "note": "Против шерсти; ви — против"}, {"id": "pranayama-11", "folder": "pranayama", "word": "Бандха", "translation": "узел, связь, оковы, замок", "examples": [], "note": ""}, {"id": "pranayama-12", "folder": "pranayama", "word": "Бхастрика", "translation": "кузнечные меха", "examples": [], "note": ""}, {"id": "pranayama-13", "folder": "pranayama", "word": "Капала", "translation": "череп", "examples": [], "note": ""}, {"id": "pranayama-14", "folder": "pranayama", "word": "Бхати", "translation": "сияние, блеск, свет", "examples": [], "note": ""}, {"id": "pranayama-15", "folder": "pranayama", "word": "Бхедана", "translation": "проникать, пронизывать", "examples": [], "note": ""}, {"id": "pranayama-16", "folder": "pranayama", "word": "Брамари", "translation": "большая чёрная пчела", "examples": [], "note": ""}, {"id": "pranayama-17", "folder": "pranayama", "word": "Наули", "translation": "волна", "examples": [], "note": ""}, {"id": "pranayama-18", "folder": "pranayama", "word": "Вама", "translation": "левая", "examples": ["Вама Наули"], "note": ""}, {"id": "pranayama-19", "folder": "pranayama", "word": "Дакшина", "translation": "правая", "examples": ["Дакшина Наули"], "note": ""}, {"id": "pranayama-20", "folder": "pranayama", "word": "Мадхьяма", "translation": "срединная", "examples": ["Мадхьяма Наули"], "note": ""}, {"id": "pranayama-21", "folder": "pranayama", "word": "Уд", "translation": "вверх", "examples": [], "note": ""}, {"id": "pranayama-22", "folder": "pranayama", "word": "Джайя", "translation": "победа, триумф, успех", "examples": [], "note": "Другое значение — подчинение, обуздание"}, {"id": "pranayama-23", "folder": "pranayama", "word": "Джала", "translation": "вода, сеть", "examples": [], "note": ""}, {"id": "pranayama-24", "folder": "pranayama", "word": "Дхара", "translation": "держащий, поддерживающий", "examples": [], "note": ""}, {"id": "pranayama-25", "folder": "pranayama", "word": "Мудра", "translation": "печать, знак, клеймо", "examples": [], "note": ""}, {"id": "pranayama-26", "folder": "pranayama", "word": "Мула", "translation": "корень, основа, начало", "examples": [], "note": ""}, {"id": "pranayama-27", "folder": "pranayama", "word": "Нади", "translation": "канал (энергетический)", "examples": [], "note": ""}, {"id": "pranayama-28", "folder": "pranayama", "word": "Сушумна", "translation": "центральный канал", "examples": [], "note": ""}, {"id": "pranayama-29", "folder": "pranayama", "word": "Ида", "translation": "левый канал", "examples": [], "note": ""}, {"id": "pranayama-30", "folder": "pranayama", "word": "Пингала", "translation": "правый канал", "examples": [], "note": ""}, {"id": "pranayama-31", "folder": "pranayama", "word": "Ситали (шитали)", "translation": "прохладный", "examples": [], "note": ""}, {"id": "pranayama-32", "folder": "pranayama", "word": "Ситкари (шитакари)", "translation": "охлаждающий", "examples": [], "note": ""}, {"id": "pranayama-33", "folder": "pranayama", "word": "Сутра", "translation": "нить", "examples": [], "note": ""}, {"id": "pranayama-34", "folder": "pranayama", "word": "Нети", "translation": "чистка носоглотки", "examples": [], "note": ""}, {"id": "pranayama-35", "folder": "pranayama", "word": "Уддияна", "translation": "взлёт", "examples": [], "note": ""}, {"id": "pranayama-36", "folder": "pranayama", "word": "Шодхана", "translation": "очищать", "examples": [], "note": ""}]};
+const FOLDERS = DATA.folders, WORDS = DATA.words;
+const byId = Object.fromEntries(WORDS.map(w=>[w.id,w]));
+const INTERVALS=[0,1,2,4,8,16,32]; // days per box
+const LEARNED_BOX=3, DAILY_GOAL=20;
+
+/* ---------- storage ---------- */
+const KEY='sanskrit-app-v1';
+function load(){try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&s.cards)return s}catch(e){}return{cards:{},xp:0,days:[],today:{date:'',count:0},ach:{},best:{}}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+let S=load();
+
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const dayNum=s=>Math.round(new Date(s+'T12:00:00').getTime()/864e5);
+function card(id){return S.cards[id]||{box:0,due:0,seen:0,right:0}}
+function isDue(id){const c=S.cards[id];return c&&c.seen>0&&c.due<=dayNum(today())}
+function streak(){
+  const set=new Set(S.days);let n=0,d=dayNum(today());
+  if(!set.has(today()))d-=1; // streak survives until end of today
+  const fmt=x=>{const t=new Date(x*864e5);return t.getUTCFullYear()+'-'+String(t.getUTCMonth()+1).padStart(2,'0')+'-'+String(t.getUTCDate()).padStart(2,'0')};
+  while(set.has(fmt(d))){n++;d--}
+  return n;
+}
+function todayCount(){return S.today.date===today()?S.today.count:0}
+function level(){let lv=1,need=100,xp=S.xp;while(xp>=need){xp-=need;lv++;need=100+lv*50}return{lv,into:xp,need}}
+
+function record(id,correct,xp){
+  const c=card(id);c.seen++;
+  if(correct){c.right++;c.box=Math.min(c.box+1,INTERVALS.length-1)}else{c.box=Math.max(0,c.box-2)}
+  c.due=dayNum(today())+INTERVALS[c.box];
+  S.cards[id]=c;
+  if(correct)S.xp+=xp;
+  const t=today();
+  if(S.today.date!==t)S.today={date:t,count:0};
+  S.today.count++;
+  if(!S.days.includes(t))S.days.push(t);
+  save();checkAch();
+}
+function addXp(n){S.xp+=n;save()}
+
+/* ---------- achievements ---------- */
+const folderLearned=fid=>WORDS.filter(w=>w.folder===fid).every(w=>card(w.id).box>=LEARNED_BOX);
+const learnedCount=()=>WORDS.filter(w=>card(w.id).box>=LEARNED_BOX).length;
+const ACH=[
+  {id:'first',name:'Первый шаг',desc:'Ответить на первую карточку',test:()=>Object.keys(S.cards).length>0},
+  {id:'goal',name:'Цель дня',desc:`${DAILY_GOAL} ответов за день`,test:()=>todayCount()>=DAILY_GOAL},
+  {id:'s3',name:'Три дня подряд',desc:'Заниматься 3 дня без пропусков',test:()=>streak()>=3},
+  {id:'s7',name:'Неделя практики',desc:'Заниматься 7 дней без пропусков',test:()=>streak()>=7},
+  {id:'perfect',name:'Без ошибок',desc:'Пройти тест из 10 вопросов на 10/10',test:()=>!!S.ach._perfect},
+  {id:'fast',name:'Быстрые пары',desc:'Собрать 6 пар быстрее 30 секунд',test:()=>!!S.ach._fast},
+  {id:'numbers',name:'Эка, дви, три',desc:'Выучить все числительные',test:()=>folderLearned('numbers')},
+  {id:'body',name:'От пады до ширши',desc:'Выучить все части тела',test:()=>folderLearned('body')},
+  {id:'zoo',name:'Зоопарк асан',desc:'Выучить всех животных и птиц',test:()=>folderLearned('animals')&&folderLearned('birds')},
+  {id:'w50',name:'50 слов',desc:'Выучить 50 слов',test:()=>learnedCount()>=50},
+  {id:'half',name:'Половина пути',desc:'Выучить половину словаря',test:()=>learnedCount()>=Math.ceil(WORDS.length/2)},
+  {id:'all',name:'Пурна',desc:'Выучить весь словарь',test:()=>learnedCount()>=WORDS.length},
+];
+function checkAch(){
+  for(const a of ACH){if(!S.ach[a.id]&&a.test()){S.ach[a.id]=today();save();toast('Достижение: '+a.name)}}
+}
+let toastT;
+function toast(msg){document.querySelector('.toast')?.remove();const el=document.createElement('div');el.className='toast';el.textContent=msg;document.body.appendChild(el);clearTimeout(toastT);toastT=setTimeout(()=>el.remove(),2600)}
+
+/* ---------- helpers ---------- */
+const $app=document.getElementById('app');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const ICON={
+  back:'<path d="M15 18l-6-6 6-6"/>',
+  chart:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+  cards:'<rect x="3" y="6" width="14" height="14" rx="2"/><path d="M7 3h12a2 2 0 0 1 2 2v12"/>',
+  quiz:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17.5v.01"/>',
+  pairs:'<rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/><path d="M13 7h4a2 2 0 0 1 2 2v2M11 17H7a2 2 0 0 1-2-2v-2"/>',
+  close:'<path d="M6 6l12 12M18 6L6 18"/>'
+};
+const ic=n=>`<svg viewBox="0 0 24 24" aria-hidden="true">${ICON[n]}</svg>`;
+function hdr(title,{back=null,right=''}={}){
+  return `<header class="top">${back?`<button class="iconbtn" data-act="${back}" aria-label="Назад">${ic('back')}</button>`:''}<h1>${esc(title)}</h1>${right}</header>`;
+}
+function wordsOf(scope){return scope==='all'?WORDS:scope==='due'?WORDS.filter(w=>isDue(w.id)):WORDS.filter(w=>w.folder===scope)}
+function scopeName(scope){return scope==='all'?'Все слова':scope==='due'?'Повторение':FOLDERS.find(f=>f.id===scope).name}
+function examplesHtml(w){return w.examples.length?`<div class="ex">${w.examples.map(e=>`<b>${esc(e)}</b>`).join(' · ')}</div>`:''}
+function ring(p){const r=15,c=2*Math.PI*r;return `<svg class="ring" viewBox="0 0 38 38" aria-hidden="true"><circle class="bg" cx="19" cy="19" r="${r}"/><circle class="fg" cx="19" cy="19" r="${r}" stroke-dasharray="${c}" stroke-dashoffset="${c*(1-p)}"/></svg>`}
+// order words for a study session: due first, then new, then the rest
+function sessionOrder(list){
+  const due=[],fresh=[],rest=[];
+  for(const w of list){const c=S.cards[w.id];if(!c||!c.seen)fresh.push(w);else if(isDue(w.id))due.push(w);else rest.push(w)}
+  return [...shuffle(due),...shuffle(fresh),...shuffle(rest)];
+}
+
+/* ---------- screens ---------- */
+let view={name:'home'};
+let dir=(()=>{try{return localStorage.getItem(KEY+'-dir')||'sa'}catch(e){return 'sa'}})(); // sa: санскрит→перевод, ru: перевод→санскрит, mix
+function setDir(d){dir=d;try{localStorage.setItem(KEY+'-dir',d)}catch(e){}}
+function go(v){view=v;render();window.scrollTo(0,0)}
+
+function render(){
+  ({home,folder,cards,quiz,pairs,progress})[view.name]();
+}
+
+function home(){
+  const st=streak(),tc=todayCount(),due=WORDS.filter(w=>isDue(w.id)).length,lv=level();
+  const learned=learnedCount();
+  $app.innerHTML=hdr('Санскрит в асанах',{right:`<button class="iconbtn" data-act="progress" aria-label="Прогресс">${ic('chart')}</button>`})+`
+  <div class="stack">
+    <div class="stats">
+      <div class="stat"><b>${st}</b><span>${plural(st,'день','дня','дней')} подряд</span></div>
+      <div class="stat"><b>${Math.min(tc,DAILY_GOAL)}/${DAILY_GOAL}</b><span>цель дня</span><div class="goal"><i style="width:${Math.min(100,tc/DAILY_GOAL*100)}%"></i></div></div>
+      <div class="stat"><b>${lv.lv}</b><span>уровень · ${S.xp} XP</span></div>
+    </div>
+    ${due?`<button class="hero" data-act="scope" data-scope="due"><div><b>Повторить ${due} ${plural(due,'слово','слова','слов')}</b><span>Пора освежить в памяти</span></div><span class="go">→</span></button>`
+         :`<button class="hero" data-act="scope" data-scope="all"><div><b>Все слова</b><span>Выучено ${learned} из ${WORDS.length}</span></div><span class="go">→</span></button>`}
+    <div class="label">Папки</div>
+    <div class="folders">
+      ${due?folderRow('all','Все слова',WORDS):''}
+      ${FOLDERS.map(f=>folderRow(f.id,f.name,WORDS.filter(w=>w.folder===f.id))).join('')}
+    </div>
+  </div>`;
+}
+function folderRow(id,name,list){
+  const l=list.filter(w=>card(w.id).box>=LEARNED_BOX).length;
+  return `<button class="folder" data-act="scope" data-scope="${id}">${ring(list.length?l/list.length:0)}<div class="nm"><b>${esc(name)}</b><small>${l} из ${list.length} выучено</small></div><span aria-hidden="true">›</span></button>`;
+}
+function plural(n,a,b,c){n=Math.abs(n)%100;const n1=n%10;if(n>10&&n<20)return c;if(n1>1&&n1<5)return b;if(n1===1)return a;return c}
+
+function folder(){
+  const sc=view.scope,list=wordsOf(sc);
+  if(!list.length){go({name:'home'});return}
+  const l=list.filter(w=>card(w.id).box>=LEARNED_BOX).length;
+  $app.innerHTML=hdr(scopeName(sc),{back:'home'})+`
+  <div class="stack">
+    <div class="progress-line"><div class="bar"><i style="width:${l/list.length*100}%"></i></div>${l}/${list.length}</div>
+    <div class="modes">
+      <button class="mode" data-act="cards">${ic('cards')}Карточки</button>
+      <button class="mode" data-act="quiz" ${list.length<2&&sc!=='due'?'disabled':''}>${ic('quiz')}Тест</button>
+      <button class="mode" data-act="pairs">${ic('pairs')}Пары</button>
+    </div>
+    <div class="label">Направление</div>
+    <div class="seg" role="group" aria-label="Направление">
+      <button data-act="dir" data-dir="sa" aria-pressed="${dir==='sa'}">Санскрит → рус</button>
+      <button data-act="dir" data-dir="ru" aria-pressed="${dir==='ru'}">Рус → санскрит</button>
+      <button data-act="dir" data-dir="mix" aria-pressed="${dir==='mix'}">Вперемешку</button>
+    </div>
+    <div class="label">Слова</div>
+    <div class="words">${list.map(w=>{const b=card(w.id).box;return `<div class="word"><span class="dot ${b>=LEARNED_BOX?'l2':b>0?'l1':''}" title="${b>=LEARNED_BOX?'выучено':b>0?'в процессе':'новое'}"></span><span class="sa">${esc(w.word)}</span><span class="ru">${esc(w.translation)}</span></div>`}).join('')}</div>
+  </div>`;
+}
+
+/* flashcards */
+function cards(){
+  if(!view.queue){view.queue=sessionOrder(wordsOf(view.scope));view.i=0;view.known=0;view.xp=0;view.flipped=false}
+  const q=view.queue;
+  if(view.i>=q.length){
+    $app.innerHTML=hdr(scopeName(view.scope),{back:'folder'})+resultHtml(`${view.known}/${q.length}`,'карточек вы знали',view.xp,'cards');return;
+  }
+  const w=q[view.i];
+  const d=dir==='mix'?(w.id.charCodeAt(w.id.length-1)%2?'sa':'ru'):dir;
+  const front=d==='sa'?`<div class="tag">Что значит</div><div class="big">${esc(w.word)}</div>`:`<div class="tag">Как на санскрите</div><div class="mid">${esc(w.translation)}</div>`;
+  const back=`<div class="big">${esc(w.word)}</div><div class="mid">${esc(w.translation)}</div>${examplesHtml(w)}${w.note?`<div class="note">${esc(w.note)}</div>`:''}`;
+  $app.innerHTML=hdr(scopeName(view.scope),{back:'folder'})+`
+  <div class="stack">
+    <div class="progress-line"><div class="bar"><i style="width:${view.i/q.length*100}%"></i></div>${view.i+1}/${q.length}</div>
+    <div class="card-wrap"><div class="fcard ${view.flipped?'flipped':''}" data-act="flip" role="button" tabindex="0" aria-label="Перевернуть карточку">
+      <div class="face front">${front}<div class="hint">Нажмите, чтобы перевернуть</div></div>
+      <div class="face back">${back}</div>
+    </div></div>
+    <div class="row2">
+      <button class="btn again" data-act="answer" data-ok="0" ${view.flipped?'':'disabled'}>Ещё учу</button>
+      <button class="btn know" data-act="answer" data-ok="1" ${view.flipped?'':'disabled'}>Знаю</button>
+    </div>
+  </div>`;
+}
+
+/* quiz */
+function makeQuestion(w,pool){
+  const d=dir==='mix'?(Math.random()<.5?'sa':'ru'):dir;
+  // distractors: not the same word text, not the same translation (avoid two right answers)
+  const ok=x=>x.id!==w.id&&x.word!==w.word&&x.translation!==w.translation;
+  let cand=shuffle(pool.filter(ok));
+  if(cand.length<3)cand=cand.concat(shuffle(WORDS.filter(x=>ok(x)&&!cand.includes(x))));
+  const seen=new Set([d==='sa'?w.translation:w.word]);const dis=[];
+  for(const x of cand){const k=d==='sa'?x.translation:x.word;if(!seen.has(k)){seen.add(k);dis.push(x)}if(dis.length===3)break}
+  return{w,d,opts:shuffle([w,...dis])};
+}
+function quiz(){
+  if(!view.qs){
+    const list=wordsOf(view.scope);
+    const pick=sessionOrder(list).slice(0,Math.min(10,list.length));
+    view.qs=shuffle(pick).map(w=>makeQuestion(w,list));view.i=0;view.right=0;view.xp=0;view.picked=null;
+  }
+  const qs=view.qs;
+  if(view.i>=qs.length){
+    if(qs.length>=10&&view.right===qs.length&&!S.ach._perfect){S.ach._perfect=1;save();checkAch()}
+    $app.innerHTML=hdr('Тест · '+scopeName(view.scope),{back:'folder'})+resultHtml(`${view.right}/${qs.length}`,'правильных ответов',view.xp,'quiz');return;
+  }
+  const q=qs[view.i],w=q.w,ans=view.picked!=null;
+  const prompt=q.d==='sa'?`<div class="tag">Что значит</div><div class="big">${esc(w.word)}</div>`:`<div class="tag">Как на санскрите</div><div class="mid">${esc(w.translation)}</div>`;
+  const opts=q.opts.map((o,i)=>{
+    let cls='opt'+(q.d==='ru'?' sa':'');
+    if(ans){if(o.id===w.id)cls+=' ok';else if(i===view.picked)cls+=' no'}
+    return `<button class="${cls}" data-act="pick" data-i="${i}" ${ans?'disabled':''}>${esc(q.d==='sa'?o.translation:o.word)}</button>`}).join('');
+  const correct=ans&&q.opts[view.picked].id===w.id;
+  $app.innerHTML=hdr('Тест · '+scopeName(view.scope),{back:'folder'})+`
+  <div class="stack">
+    <div class="progress-line"><div class="bar"><i style="width:${view.i/qs.length*100}%"></i></div>${view.i+1}/${qs.length}</div>
+    <div class="qcard">${prompt}</div>
+    <div class="opts">${opts}</div>
+    ${ans?`<div class="feedback ${correct?'ok':'no'}"><b>${correct?'Верно! +10 XP':'Не совсем.'}</b> ${esc(w.word)} — ${esc(w.translation)}${w.examples.length?'<br>'+w.examples.map(esc).join(' · '):''}</div>
+    <button class="btn primary" data-act="next">${view.i+1<qs.length?'Дальше':'Результат'}</button>`:''}
+  </div>`;
+}
+
+/* pairs */
+function pairs(){
+  if(!view.tiles){
+    const list=wordsOf(view.scope);const chosen=[];const usedW=new Set(),usedT=new Set();
+    for(const w of shuffle(list)){if(usedW.has(w.word)||usedT.has(w.translation))continue;usedW.add(w.word);usedT.add(w.translation);chosen.push(w);if(chosen.length===6)break}
+    if(chosen.length<6)for(const w of shuffle(WORDS)){if(chosen.length===6)break;if(usedW.has(w.word)||usedT.has(w.translation))continue;usedW.add(w.word);usedT.add(w.translation);chosen.push(w)}
+    view.left=shuffle(chosen).map(w=>({id:w.id,t:w.word,side:'sa'}));
+    view.right=shuffle(chosen).map(w=>({id:w.id,t:w.translation,side:'ru'}));
+    view.tiles=true;view.done=new Set();view.sel=null;view.miss=0;view.start=Date.now();view.wrong=null;
+    clearInterval(view.tick);view.tick=setInterval(()=>{const el=document.querySelector('.timer');if(el&&view.name==='pairs')el.textContent=fmtTime(Date.now()-view.start)},250);
+  }
+  if(view.done.size===view.left.length){
+    clearInterval(view.tick);
+    if(!view.final){
+      const ms=Date.now()-view.start;const gain=Math.max(5,30-view.miss*5);addXp(gain);
+      const key=view.scope;const prev=S.best[key];const rec=!prev||ms<prev;if(rec){S.best[key]=ms}
+      if(ms<30000&&!S.ach._fast){S.ach._fast=1}
+      const t=today();if(S.today.date!==t)S.today={date:t,count:0};if(!S.days.includes(t))S.days.push(t);
+      save();checkAch();view.final={ms,gain,rec};
+    }
+    const f=view.final;
+    $app.innerHTML=hdr('Пары · '+scopeName(view.scope),{back:'folder'})+resultHtml(fmtTime(f.ms),(f.rec?'новый рекорд! ':'')+`ошибок: ${view.miss}`+(S.best[view.scope]&&!f.rec?` · рекорд ${fmtTime(S.best[view.scope])}`:''),f.gain,'pairs');return;
+  }
+  const tile=(x,col)=>{const k=col+x.id;let cls='tile'+(x.side==='sa'?' sa':'');if(view.done.has(x.id))cls+=' done';if(view.sel===k)cls+=' sel';if(view.wrong&&view.wrong.includes(k))cls+=' wrong';return `<button class="${cls}" data-act="tile" data-k="${k}">${esc(x.t)}</button>`};
+  let html='';for(let i=0;i<view.left.length;i++)html+=tile(view.left[i],'L')+tile(view.right[i],'R');
+  $app.innerHTML=hdr('Пары · '+scopeName(view.scope),{back:'folder',right:`<span class="timer">${fmtTime(Date.now()-view.start)}</span>`})+`
+  <div class="stack"><div class="ex">Соедините слово с переводом. Ошибок: ${view.miss}</div><div class="pairs">${html}</div></div>`;
+}
+const fmtTime=ms=>{const s=Math.floor(ms/1000);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
+
+function resultHtml(score,sub,xp,again){
+  return `<div class="stack"><div class="result"><div class="score">${esc(score)}</div><div class="ex">${esc(sub)}</div>${xp?`<span class="xp">+${xp} XP</span>`:''}</div>
+  <div class="row2"><button class="btn" data-act="folder">К папке</button><button class="btn primary" data-act="${again}" data-restart="1">Ещё раз</button></div></div>`;
+}
+
+function progress(){
+  const lv=level(),learned=learnedCount();
+  $app.innerHTML=hdr('Прогресс',{back:'home'})+`
+  <div class="stack">
+    <div class="lvl"><div class="t"><b>Уровень ${lv.lv}</b><span class="ex">${S.xp} XP</span></div>
+      <div class="progress-line"><div class="bar"><i style="width:${lv.into/lv.need*100}%"></i></div>${lv.into}/${lv.need}</div>
+      <div class="ex">Выучено ${learned} из ${WORDS.length} слов · серия ${streak()} ${plural(streak(),'день','дня','дней')}</div></div>
+    <div class="label">Достижения · ${ACH.filter(a=>S.ach[a.id]).length} из ${ACH.length}</div>
+    <div class="ach">${ACH.map(a=>`<div class="badge ${S.ach[a.id]?'on':'off'}"><b>${esc(a.name)}</b><small>${esc(a.desc)}</small></div>`).join('')}</div>
+    <div class="label">Как это работает</div>
+    <div class="ex">Слово считается выученным, когда вы правильно ответили на него 3 раза подряд в разные дни. Забытые слова возвращаются на повторение чаще. Прогресс хранится только на этом устройстве.</div>
+    ${view.confirm?`<div class="confirm"><b>Удалить весь прогресс?</b><span class="ex">Очки, серия, достижения и статусы слов обнулятся. Это нельзя отменить.</span><div class="row2"><button class="btn" data-act="noreset">Отмена</button><button class="btn again" data-act="doreset">Удалить</button></div></div>`
+      :`<button class="btn ghost" data-act="reset">Сбросить прогресс</button>`}
+  </div>`;
+}
+
+/* ---------- events ---------- */
+$app.addEventListener('click',e=>{
+  const b=e.target.closest('[data-act]');if(!b||b.disabled)return;
+  const a=b.dataset.act;
+  if(a==='home')go({name:'home'});
+  else if(a==='progress')go({name:'progress'});
+  else if(a==='scope')go({name:'folder',scope:b.dataset.scope});
+  else if(a==='folder'){clearInterval(view.tick);go({name:'folder',scope:view.scope})}
+  else if(a==='dir'){setDir(b.dataset.dir);render()}
+  else if(a==='cards'||a==='quiz'||a==='pairs'){clearInterval(view.tick);go({name:a,scope:view.scope})}
+  else if(a==='flip'){view.flipped=!view.flipped;document.querySelector('.fcard').classList.toggle('flipped',view.flipped);document.querySelectorAll('[data-act="answer"]').forEach(x=>x.disabled=!view.flipped)}
+  else if(a==='answer'){const ok=b.dataset.ok==='1';const w=view.queue[view.i];record(w.id,ok,2);if(ok){view.known++;view.xp+=2}view.i++;view.flipped=false;render()}
+  else if(a==='pick'){const q=view.qs[view.i];view.picked=+b.dataset.i;const ok=q.opts[view.picked].id===q.w.id;record(q.w.id,ok,10);if(ok){view.right++;view.xp+=10}render()}
+  else if(a==='next'){view.i++;view.picked=null;render()}
+  else if(a==='tile'){
+    const k=b.dataset.k;if(view.wrong)return;
+    if(!view.sel){view.sel=k;render();return}
+    if(view.sel===k){view.sel=null;render();return}
+    if(view.sel[0]===k[0]){view.sel=k;render();return}
+    if(view.sel.slice(1)===k.slice(1)){view.done.add(k.slice(1));view.sel=null;render()}
+    else{view.miss++;view.wrong=[view.sel,k];view.sel=null;render();setTimeout(()=>{view.wrong=null;if(view.name==='pairs')render()},450)}
+  }
+  else if(a==='reset'){view.confirm=true;render()}
+  else if(a==='noreset'){view.confirm=false;render()}
+  else if(a==='doreset'){S={cards:{},xp:0,days:[],today:{date:'',count:0},ach:{},best:{}};save();view.confirm=false;toast('Прогресс удалён');render()}
+});
+$app.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('.fcard')){e.preventDefault();e.target.click()}});
+render();
+</script>
+
+<script>if('serviceWorker' in navigator&&location.protocol==='https:'&&!window.Capacitor){navigator.serviceWorker.register('sw.js').catch(()=>{})}</script>
+</body></html>
